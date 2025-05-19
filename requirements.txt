@@ -1,0 +1,9 @@
+gradio
+torch
+torchvision
+torchaudio
+diffusers
+transformers
+accelerate
+pillow
+huggingface_hub
