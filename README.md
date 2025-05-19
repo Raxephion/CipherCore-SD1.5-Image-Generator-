@@ -1,53 +1,93 @@
-Basic Stable Diffusion 1.5 Gradio App
-A simple Gradio web application for generating images using Stable Diffusion 1.5 models. Users can select models from a local ./checkpoints directory or choose from a list of popular models on the Hugging Face Hub. The app supports CPU or GPU inference (if a compatible GPU is available) and allows users to configure various generation parameters.
-Features
-Model Selection: Choose from locally stored Stable Diffusion 1.5 models (place model subdirectories in ./checkpoints/) or a curated list of popular models from the Hugging Face Hub (downloads if not cached).
-Device Selection: Select to run inference on CPU or GPU (if CUDA-enabled PyTorch is installed and a compatible GPU is available).
-Prompt Control: Enter positive and negative prompts to guide image generation.
-Parameter Adjustment: Configure inference steps, CFG scale, scheduler, image size, and random seed for reproducibility.
-"Hire.fix" Option: Includes a "hire.fix" option which is interpreted as generating a 1024x1024 image in this basic implementation.
-Image Output: Displays the generated image with options to share and download.
-Prerequisites
-Python 3.7+
-Git (for cloning)
-A compatible CPU or NVIDIA GPU with CUDA drivers installed (for GPU inference).
-An internet connection (for downloading models from the Hugging Face Hub if not available locally).
-Setup
-Clone the repository:
-git clone <your-repo-url>
-cd stable-diffusion-gradio
-Create and activate a virtual environment:
-Using venv:
-python -m venv venv
-On Windows
-.\venv\Scripts\activate
-On macOS/Linux
-source venv/bin/activate
-Using conda:
-conda create -n stablediffusion python=3.9 # Or your preferred Python version
-conda activate stablediffusion
-Install dependencies:
-pip install -r requirements.txt
-Local Models (Optional):
-If you have Stable Diffusion 1.5 models in the diffusers format locally, create a checkpoints directory in the project root and place each model in its own subdirectory within checkpoints.
-Usage
-Run the Gradio application from your terminal:
-python stable_diffusion_app.py
-This will launch a web interface in your default browser. You can then:
-Select a model from the "Select Model" dropdown.
-Choose "CPU" or "GPU" from the "Select Device" dropdown.
-Enter your desired prompt in the "Prompt" textbox.
-Optionally, enter a negative prompt.
-Adjust the "Inference Steps" and "CFG Scale" sliders.
-Select a "Scheduler" and "Image Size" (including "hire.fix" for 1024x1024).
-Enter a seed for reproducible results, or leave as -1 for a random seed.
-Click the "Generate Image" button.
-The generated image will be displayed in the output area.
-Important Notes
-Local Models: Ensure your local models are in the diffusers format (typically a directory with configuration files and .bin or .safetensors weights).
-Hugging Face Hub: If a selected Hub model is not already cached, it will be downloaded.
-GPU Usage: GPU inference requires PyTorch with CUDA support to be correctly installed and a compatible NVIDIA GPU.
-Memory: Generating high-resolution images or using complex models can be memory-intensive. You may encounter "Out of Memory" errors on systems with limited resources. Try reducing image size or inference steps.
-Safety Checker: The safety checker has been intentionally removed in this basic implementation. Use with caution and be aware of the potential for generating NSFW content.
-Contributing
-Feel free to fork the project, make improvements, and submit pull requests.
+# CipherCore Stable Diffusion 1.5 Generator
+
+[![Python Version](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<!-- Optional: [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Spaces-blue)](YOUR_SPACE_LINK_HERE_IF_YOU_DEPLOY_IT) -->
+
+Welcome to the CipherCore Stable Diffusion 1.5 Generator! This user-friendly Gradio web application allows you to effortlessly generate images using various Stable Diffusion 1.5 models. Whether you have local models or prefer popular ones from the Hugging Face Hub, this tool provides a simple interface to unleash your creativity on your CPU or GPU.
+
+![Screenshot (Placeholder - Add your app screenshot here!)](https://via.placeholder.com/800x500.png?text=App+Screenshot+Here)
+*(Replace the placeholder above with an actual screenshot of your app!)*
+
+## ✨ Features
+
+*   **Flexible Model Selection:**
+    *   Load your own Stable Diffusion 1.5 models (in `diffusers` format) from a local `./checkpoints` directory.
+    *   Access a curated list of popular SD1.5 models directly from the Hugging Face Hub (models are downloaded and cached locally on first use).
+*   **Device Agnostic:**
+    *   Run inference on your **CPU**.
+    *   Leverage your **NVIDIA GPU** for significantly faster generation (requires CUDA-enabled PyTorch).
+*   **Comprehensive Control:**
+    *   **Positive & Negative Prompts:** Guide the AI with detailed descriptions of what you want (and don't want).
+    *   **Inference Steps:** Control the number of denoising steps.
+    *   **CFG Scale:** Adjust how strongly the image should conform to your prompt.
+    *   **Schedulers:** Experiment with different sampling algorithms (Euler, DPM++ 2M, DDPM, LMS).
+    *   **Image Sizes:** Choose from standard SD1.5 resolutions, plus a "hire.fix" option (interpreted as 1024x1024).
+    *   **Seed Control:** Set a specific seed for reproducible results or use -1 for random generation.
+*   **User-Friendly Interface:**
+    *   Clean and intuitive Gradio UI.
+    *   Organized controls with advanced settings in an accordion for a cleaner look.
+    *   Direct image display with download and share options.
+*   **Safety First (Note):** The built-in safety checker is **disabled** in this version to allow for maximum creative freedom with custom models. Please be mindful of the content you generate.
+
+## 🚀 Prerequisites
+
+*   **Python:** 3.8 or higher.
+*   **Git:** For cloning the repository.
+*   **Hardware:**
+    *   A modern CPU.
+    *   (Recommended for speed) An NVIDIA GPU with CUDA drivers installed if you plan to use GPU acceleration. At least 6-8GB VRAM is recommended for 512x512 generation, more for larger sizes.
+*   **Internet Connection:** Required for downloading models from Hugging Face Hub on first use.
+
+## ⚙️ Setup & Installation
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone <your-repo-url-here>
+    cd ciphercore-sd1.5-generator
+    ```
+
+2.  **Create a Virtual Environment (Recommended):**
+    *   Using `venv`:
+        ```bash
+        python -m venv venv
+        # On Windows:
+        .\venv\Scripts\activate
+        # On macOS/Linux:
+        source venv/bin/activate
+        ```
+    *   Using `conda`:
+        ```bash
+        conda create -n ciphercore python=3.9
+        conda activate ciphercore
+        ```
+
+3.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+    *(This will install Gradio, PyTorch, Diffusers, and other necessary libraries. PyTorch installation might take some time and will attempt to install a version compatible with your system's CUDA if available.)*
+
+4.  **Prepare Local Models (Optional):**
+    *   Create a directory named `checkpoints` in the root of the project.
+    *   Place your Stable Diffusion 1.5 models (in `diffusers` format – meaning each model is a folder containing files like `model_index.json`, `unet/`, `vae/`, etc.) inside the `checkpoints` directory.
+        Example structure:
+        ```
+        ciphercore-sd1.5-generator/
+        ├── checkpoints/
+        │   ├── my-custom-model-1/
+        │   │   ├── model_index.json
+        │   │   ├── unet/
+        │   │   └── ...
+        │   └── another-local-model/
+        │       └── ...
+        ├── app.py
+        └── ...
+        ```
+
+## ▶️ Running the Application
+
+Once the setup is complete, launch the Gradio web UI:
+
+```bash
+python app.py
