@@ -43,7 +43,7 @@ Welcome to the CipherCore Stable Diffusion 1.5 Generator! This user-friendly Gra
 
 1.  **Clone the Repository:**
     ```bash
-    git clone <your-repo-url-here>
+    git clone https://github.com/Raxephion/CipherCore-SD1.5-Image-Generator-.git
     cd ciphercore-sd1.5-generator
     ```
 
