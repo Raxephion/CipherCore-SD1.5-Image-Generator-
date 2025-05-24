@@ -5,7 +5,7 @@
 
 Welcome to the CipherCore Stable Diffusion 1.5 Generator! This user-friendly Gradio web application allows you to effortlessly generate images using various Stable Diffusion 1.5 models. Whether you have local models or prefer popular ones from the Hugging Face Hub, this tool provides a simple interface to unleash your creativity on your CPU or GPU.
 
-
+*(NOTE: Installer and run file to make it easier for non-engineers and people who don't like fiddling with code and command prompts, coming soon)*
 
 ## ✨ Features
 
